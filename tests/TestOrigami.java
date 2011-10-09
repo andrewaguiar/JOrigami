@@ -8,6 +8,7 @@ import java.util.List;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import br.org.origami.ConsolidatingListener;
+import br.org.origami.FaultListener;
 import br.org.origami.OrigamiFactory;
 
 public class TestOrigami extends TestCase {
@@ -21,7 +22,11 @@ public class TestOrigami extends TestCase {
 				list.add(bo);
 			}
 		});
-		origami.mount(new FileInputStream("tests/one_line.txt"));
+		try {
+			origami.mount(new FileInputStream("tests/one_line.txt"));
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
 
 		final BasicOrigami bo = list.get(0);
 		return bo;
@@ -94,8 +99,9 @@ public class TestOrigami extends TestCase {
 		Assert.assertEquals("010920111459", dateFormatted);
 	}
 
-	public void testCouldCreateOrigamisFromFile() throws Exception {
+	public void testOrigamiFaultTolerantWithFaultListener() throws Exception {
 		final List<BasicOrigami> list = new LinkedList<BasicOrigami>();
+		final List<String> fault = new LinkedList<String>();
 
 		final OrigamiFactory origami = OrigamiFactory.createLinesBasedFactory(BasicOrigami.class, new ConsolidatingListener<BasicOrigami>() {
 			@Override
@@ -103,9 +109,65 @@ public class TestOrigami extends TestCase {
 				list.add(bo);
 			}
 		});
+		//		origami.setFaultTolerant(true);
+		origami.setFaultListener(new FaultListener() {
+			@Override
+			public void catches(final Exception exception, final int row) {
+				fault.add(exception.toString() + " in row (" + row + ")");
+			}
+		});
 		origami.mount(new FileInputStream("tests/many_lines.txt"));
 
-		Assert.assertFalse(list.size() == 0);
+		Assert.assertTrue(list.size() == 15);
 		Assert.assertNotNull(list.get(0));
+
+		Assert.assertTrue(fault.size() == 2);
+		Assert.assertNotNull(fault.get(0));
+		Assert.assertNotNull(fault.get(1));
+		Assert.assertEquals("java.lang.NumberFormatException: For input string: \"st\" in row (10)", fault.get(0));
+		Assert.assertEquals("java.lang.NumberFormatException: For input string: \"st\" in row (17)", fault.get(1));
+	}
+
+	public void testOrigamiFaultTolerantWithIgnore() throws Exception {
+		final List<BasicOrigami> list = new LinkedList<BasicOrigami>();
+		final List<String> fault = new LinkedList<String>();
+
+		final OrigamiFactory origami = OrigamiFactory.createLinesBasedFactory(BasicOrigami.class, new ConsolidatingListener<BasicOrigami>() {
+			@Override
+			public void process(final BasicOrigami bo) {
+				list.add(bo);
+			}
+		});
+		origami.setFaultTolerant(true);
+		origami.setFaultListener(new FaultListener() {
+			@Override
+			public void catches(final Exception exception, final int row) {
+				fault.add(exception.toString() + " in row (" + row + ")");
+			}
+		});
+		origami.mount(new FileInputStream("tests/many_lines.txt"));
+
+		Assert.assertTrue(list.size() == 15);
+		Assert.assertTrue(fault.size() == 0);
+	}
+
+	public void testOrigamiNotFaultTolerant() throws Exception {
+		final List<BasicOrigami> list = new LinkedList<BasicOrigami>();
+
+		Exception exception = null;
+		try {
+			final OrigamiFactory origami = OrigamiFactory.createLinesBasedFactory(BasicOrigami.class, new ConsolidatingListener<BasicOrigami>() {
+				@Override
+				public void process(final BasicOrigami bo) {
+					list.add(bo);
+				}
+			});
+			origami.mount(new FileInputStream("tests/many_lines.txt"));
+		} catch (final Exception e) {
+			exception = e;
+		}
+		Assert.assertTrue(list.size() == 9);
+		Assert.assertNotNull(exception);
+		Assert.assertEquals(NumberFormatException.class, exception.getClass());
 	}
 }

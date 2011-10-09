@@ -25,11 +25,32 @@ class CoordsMap {
 		}
 	}
 
-	Object consolidateRecord() throws InstantiationException, IllegalAccessException {
+	Object consolidateRecord() throws Exception {
 		final Object origami = this.origamiClass.newInstance();
-		for (final Coord coordInformation : this.coords) {
-			coordInformation.flush(origami);
+		try {
+			for (final Coord coordInformation : this.coords) {
+				coordInformation.flush(origami);
+				if (coordInformation.wasError()) {
+					return null;
+				}
+			}
+		} catch (final Exception e) {
+			throw e;
+		} finally {
+			this.cleanAll();
 		}
 		return origami;
+	}
+
+	private void cleanAll() {
+		for (final Coord coordInformation : this.coords) {
+			coordInformation.clean();
+		}
+	}
+
+	void setFaultTolerant(final boolean faultTolerant) {
+		for (final Coord coordInformation : this.coords) {
+			coordInformation.setFaultTolerant(faultTolerant);
+		}
 	}
 }

@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class OrigamiFormatter {
 
-	public Object convert(final String value, final Class transformType, final String sub, final String opt) {
+	public Object convert(final String value, final Class transformType, final String sub, final String opt) throws Exception {
 		Object r = null;
 
 		if (String.class == transformType) {

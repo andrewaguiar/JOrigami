@@ -1,6 +1,5 @@
 package br.org.origami;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
@@ -9,6 +8,8 @@ public class OrigamiFactory<T> {
 	private final String breakLineString;
 	private final Class<?> origamiClass;
 	private final ConsolidatingListener listener;
+	private boolean faultTolerant;
+	private FaultListener faultListener;
 
 	public static <T> OrigamiFactory<T> createLinesBasedFactory(final Class<T> origamiClass, final ConsolidatingListener<T> listener) {
 		return new OrigamiFactory(origamiClass, "\n", listener);
@@ -31,32 +32,73 @@ public class OrigamiFactory<T> {
 		}
 	}
 
-	public void mount(final InputStream in) throws IOException {
+	public void mount(final InputStream in) throws Exception {
 		final CoordsMap coords = new CoordsMap(this.origamiClass);
+		coords.setFaultTolerant(this.faultTolerant);
 
 		final LastCharsBuffer lastCharsBuffer = new LastCharsBuffer(this.breakLineString);
 
+		int currentRow = 0;
 		int currentIndex = 0;
 		for (int i = -1; (i = in.read()) != -1;) {
 			final char c = (char) i;
 			lastCharsBuffer.add(c);
 
-			coords.add(currentIndex, c);
+			if (this.faultListener != null) {
+				try {
+					coords.add(currentIndex, c);
+				} catch (final Exception e) {
+					this.faultListener.catches(e, currentRow);
+				}
+			} else {
+				coords.add(currentIndex, c);
+			}
 
 			currentIndex++;
 			if (lastCharsBuffer.endsWithReference()) {
+				currentRow++;
+
+				if (this.faultListener != null) {
+					try {
+						this.consolidate(coords);
+					} catch (final Exception e) {
+						this.faultListener.catches(e, currentRow);
+					}
+				} else {
+					this.consolidate(coords);
+				}
+
 				currentIndex = 0;
-				this.consolidate(coords);
 			}
 		}
 		if (currentIndex > 0) {
-			this.consolidate(coords);
+			currentRow++;
+			if (this.faultListener != null) {
+				try {
+					this.consolidate(coords);
+				} catch (final Exception e) {
+					this.faultListener.catches(e, currentRow);
+				}
+			} else {
+				this.consolidate(coords);
+			}
 		}
 	}
 
-	private void consolidate(final CoordsMap coords) {
+	public void setFaultTolerant(final boolean faultTolerant) {
+		this.faultTolerant = faultTolerant;
+	}
+
+	public void setFaultListener(final FaultListener faultListener) {
+		this.faultListener = faultListener;
+	}
+
+	private void consolidate(final CoordsMap coords) throws Exception {
 		try {
-			this.listener.process(coords.consolidateRecord());
+			final Object obj = coords.consolidateRecord();
+			if (obj != null) {
+				this.listener.process(obj);
+			}
 		} catch (final InstantiationException e) {
 			throw new IllegalArgumentException("origamiClass do NOT have a public valid constructor", e);
 		} catch (final IllegalAccessException e) {
