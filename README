@@ -95,7 +95,7 @@ Execute the processing of InputStream. use its factory method.
 
 
                                                             ConsolidatingListener
-                                                       
+
 During the processing each 'unit of informations' that is cosolidated in a Origami object will pass by a 
 'ConsolidatingListener'.
 
@@ -107,4 +107,13 @@ Annotation used to mark a field to be filled with informations.
 
 
 
-                                                            OrigamiField
+                                                            FaultListener
+
+During the processing each 'unit of informations' that generates a Exception in the conversion will pass by a
+'FaultListener'.
+
+
+
+                                                            OrigamiFormatter
+
+Used to convert from String (text file) to basic java types, can be inherited to provide more complex forms of conversion.
