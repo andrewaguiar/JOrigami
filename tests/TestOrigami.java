@@ -49,7 +49,7 @@ public class TestOrigami extends TestCase {
 
 	public void testStringValue() throws Exception {
 		final BasicOrigami bo = this.readFromOneLine();
-		Assert.assertEquals("teste com o componente origami", bo.getName());
+		Assert.assertEquals("---TESTE COM O COMPONENTE ORIGAMI---", bo.getName());
 	}
 
 	public void testIntValue() throws Exception {

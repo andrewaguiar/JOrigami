@@ -8,7 +8,7 @@ public class BasicOrigami {
 		SIMPLE, COMPLEX, NORMAL
 	}
 
-	@OrigamiField(start = 1, end = 30)
+	@OrigamiField(start = 1, end = 30, formatter = CustomizedNameFormatter.class)
 	private String name;
 
 	@OrigamiField(start = 31, end = 33)

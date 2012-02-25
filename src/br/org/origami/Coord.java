@@ -11,10 +11,10 @@ class Coord {
 	private final Field field;
 	private final OrigamiField origamiField;
 	private final StringBuilder content = new StringBuilder();
-	private final Map<Class<? extends OrigamiFormatter>, OrigamiFormatter> formatters = new HashMap<Class<? extends OrigamiFormatter>, OrigamiFormatter>();
+	private final Map<Class<? extends OrigamiFormater>, OrigamiFormater> formatters = new HashMap<Class<? extends OrigamiFormater>, OrigamiFormater>();
 	private boolean faultTolerant;
 	private boolean error;
-	private static OrigamiFormatter defaultOrigamiFormatter = new OrigamiFormatter();
+	private static OrigamiFormater defaultOrigamiFormatter = new DefaultOrigamiFormatter();
 
 	Coord(final Field field, final OrigamiField origamiField) {
 		this.field = field;
@@ -42,7 +42,7 @@ class Coord {
 			}
 			boolean successfully = false;
 
-			final OrigamiFormatter formatter = this.findFormatter(this.origamiField.formatter());
+			final OrigamiFormater formatter = this.findFormatter(this.origamiField.formatter());
 			Object value = null;
 			try {
 				value = formatter.convert(rawValue, this.field.getType(), this.origamiField.sub(), this.origamiField.opt());
@@ -71,15 +71,16 @@ class Coord {
 		this.content.delete(0, this.content.length());
 	}
 
-	private OrigamiFormatter findFormatter(final Class<? extends OrigamiFormatter> formatter) throws InstantiationException, IllegalAccessException {
-		if (formatter == OrigamiFormatter.class) {
+	private OrigamiFormater findFormatter(final Class<? extends OrigamiFormater> formatter) throws InstantiationException, IllegalAccessException {
+		if (formatter == DefaultOrigamiFormatter.class) {
 			return Coord.defaultOrigamiFormatter;
 		}
-		final OrigamiFormatter origamiFormatter = this.formatters.get(formatter);
-		if (origamiFormatter == null) {
 
+		OrigamiFormater origamiFormatter = this.formatters.get(formatter);
+		if (origamiFormatter == null) {
+			this.formatters.put(formatter, (origamiFormatter = formatter.newInstance()));
 		}
-		return formatter.newInstance();
+		return origamiFormatter;
 	}
 
 	public boolean wasError() {

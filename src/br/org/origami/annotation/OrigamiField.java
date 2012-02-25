@@ -5,7 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import br.org.origami.OrigamiFormatter;
+import br.org.origami.DefaultOrigamiFormatter;
+import br.org.origami.OrigamiFormater;
 
 /**
  * Represents a part of text file.
@@ -56,7 +57,7 @@ public @interface OrigamiField {
 
 	/** @return the value processed used to create some customized Formatters to
 	 * non simple field types */
-	Class<? extends OrigamiFormatter> formatter() default OrigamiFormatter.class;
+	Class<? extends OrigamiFormater> formatter() default DefaultOrigamiFormatter.class;
 
 	/** @return the alternative value when the value is null. */
 	String sub() default "";
