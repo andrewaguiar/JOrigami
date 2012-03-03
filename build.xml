@@ -1,44 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jorigami" default="DIST" basedir=".">
 
-	<property name="origami.folder.project" value="../JOrigami/"/>
-	<property name="origami.version" value="1.0.0"/>
-	<property name="origami.folder.src" value="${origami.folder.project}src/"/>
-	<property name="origami.folder.build" value="${origami.folder.project}build/"/>
-	<property name="origami.folder.dist" value="${origami.folder.project}dist/"/>
-	<property name="origami.folder.lib" value="${origami.folder.project}lib/"/>
-
+	<property name="jorigami.folder.project" value="../JOrigami/"/>
+	<property name="jorigami.version" value="1.0.0"/>
+	<property name="jorigami.folder.src" value="${jorigami.folder.project}src/"/>
+	<property name="jorigami.folder.tests" value="${jorigami.folder.project}tests/"/>
+	<property name="jorigami.folder.build" value="${jorigami.folder.project}build/"/>
+	<property name="jorigami.folder.dist" value="${jorigami.folder.project}dist/"/>
+	<property name="jorigami.folder.lib" value="${jorigami.folder.project}lib/"/>
+	<property environment="env" />
+	
+	<taskdef 
+		name="junit"
+		classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+	</taskdef>
+	
 	<target name="CLEAN">
-		<delete verbose="false" dir="${origami.folder.build}"/>
+		<delete verbose="false" dir="${jorigami.folder.build}"/>
 	</target>
 
 	<target name="CLEAN_ALL">
-		<delete verbose="false" dir="${origami.folder.build}"/>
-		<delete verbose="false" dir="${origami.folder.dist}"/>
+		<delete verbose="false" dir="${jorigami.folder.build}"/>
+		<delete verbose="false" dir="${jorigami.folder.dist}"/>
+	</target>
+	
+	<target name="INIT">
+		<mkdir dir="${jorigami.folder.build}"/>
+		<mkdir dir="${jorigami.folder.dist}"/>
 	</target>
 
-	<target name="INIT">
-		<mkdir dir="${origami.folder.build}"/>
-		<mkdir dir="${origami.folder.dist}"/>
-	</target>
+    <target name="RUN-TESTS">
+		<junit printsummary="yes" fork="no" haltonfailure="yes" showoutput="yes" >
+			<classpath>
+				<pathelement path="${jorigami.folder.build}"/>
+			</classpath>
+ 		  <batchtest fork="yes" todir="${jorigami.folder.dist}">
+		  	<formatter type="xml"/>
+		    <fileset dir="${jorigami.folder.tests}">
+		      <include name="**/Testing*.java"/>
+		    </fileset>
+		  </batchtest>
+		</junit>
+    	
+    	<delete verbose="false">
+    		<fileset dir="${jorigami.folder.dist}">
+    			<include name="*.xml" />
+    		</fileset>
+    	</delete>
+    </target>
 
 	<target name="COMPILE">
-		<javac verbose="false" srcdir="${origami.folder.src}" destdir="${origami.folder.build}">
+		<javac verbose="false" srcdir="${jorigami.folder.src}" destdir="${jorigami.folder.build}">
 		</javac>
+		<javac verbose="false" srcdir="${jorigami.folder.tests}" destdir="${jorigami.folder.build}">
+		</javac>
+	</target>
 
-		<jar destfile="${origami.folder.dist}/${ant.project.name}_${origami.version}.jar">
+	<target name="JAR">
+		<jar destfile="${jorigami.folder.dist}/${ant.project.name}_${jorigami.version}.jar">
    	        <manifest>
    	        	<attribute name="Author"     value="Andrew S Aguiar."/>
-				<attribute name="Version"    value="${mosaic.version}"/>
+				<attribute name="Version"    value="${jorigami.version}"/>
    	        	<attribute name="SO"         value="${os.name} - ${os.version} - ${os.arch}" />
    	        </manifest>
-			<fileset dir="${origami.folder.build}" casesensitive="false">
+			<fileset dir="${jorigami.folder.build}" casesensitive="false">
 				<include name="**/*.class"/>
 				<include name="**/*.properties"/>
 			</fileset>
 		</jar>
 	</target>
 
-	<target name="DIST" depends="CLEAN_ALL, INIT, COMPILE, CLEAN">
+	<target name="DIST" depends="COMPILE-TEST, JAR, CLEAN">
+	</target>
+
+	<target name="COMPILE-TEST" depends="CLEAN_ALL, INIT, COMPILE, RUN-TESTS">
 	</target>
 </project>
