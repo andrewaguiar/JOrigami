@@ -17,7 +17,6 @@ public class DefaultOrigamiFormatter implements OrigamiFormater {
 
 		if (String.class == transformType) {
 			r = (value != null ? value : sub);
-			r = "aaa";
 		} else if (StringBuilder.class == transformType) {
 			r = new StringBuilder(value != null ? value : sub);
 
