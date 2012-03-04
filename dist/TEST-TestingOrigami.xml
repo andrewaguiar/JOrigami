@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="osiris" name="TestingOrigami" tests="13" time="0.232" timestamp="2012-03-03T23:55:09">
+<testsuite errors="0" failures="0" hostname="osiris" name="TestingOrigami" tests="13" time="0.225" timestamp="2012-03-04T16:44:09">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
-    <property name="env.SESSION_MANAGER" value="local/osiris:@/tmp/.ICE-unix/2079,unix/osiris:/tmp/.ICE-unix/2079" />
+    <property name="env.SESSION_MANAGER" value="local/osiris:@/tmp/.ICE-unix/2037,unix/osiris:/tmp/.ICE-unix/2037" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="eclipse.pdebuild.templates" value="/home/andrew/bin/eclipse_galileu_web/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/templates//" />
     <property name="sun.management.compiler" value="HotSpot Tiered Compilers" />
     <property name="os.name" value="Linux" />
     <property name="sun.boot.class.path" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/resources.jar:/home/andrew/bin/jdk1.6.0_18/jre/lib/rt.jar:/home/andrew/bin/jdk1.6.0_18/jre/lib/sunrsasign.jar:/home/andrew/bin/jdk1.6.0_18/jre/lib/jsse.jar:/home/andrew/bin/jdk1.6.0_18/jre/lib/jce.jar:/home/andrew/bin/jdk1.6.0_18/jre/lib/charsets.jar:/home/andrew/bin/jdk1.6.0_18/jre/classes" />
     <property name="env.PWD" value="/home/andrew" />
-    <property name="env.XDG_SESSION_COOKIE" value="fb718ae19e81ed95a70780aa4b895c40-1330775843.707939-1138646713" />
+    <property name="env.XDG_SESSION_COOKIE" value="fb718ae19e81ed95a70780aa4b895c40-1330860737.129498-1042263538" />
     <property name="sun.desktop" value="gnome" />
     <property name="env.LANG" value="pt_BR.UTF-8" />
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
@@ -33,10 +33,10 @@
     <property name="ant.project.name" value="jorigami" />
     <property name="java.version" value="1.6.0_18" />
     <property name="user.timezone" value="" />
-    <property name="env.DBUS_SESSION_BUS_ADDRESS" value="unix:abstract=/tmp/dbus-YNjGIK9DEt,guid=8d726d2b0ab0b486b358cf404f520724" />
+    <property name="env.DBUS_SESSION_BUS_ADDRESS" value="unix:abstract=/tmp/dbus-WDudwXrC7U,guid=b0ec06dd7b72d2769dc2d2a24f5352c1" />
     <property name="sun.arch.data.model" value="32" />
     <property name="jorigami.folder.dist" value="../JOrigami/dist/" />
-    <property name="env.SSH_AGENT_PID" value="2120" />
+    <property name="env.SSH_AGENT_PID" value="2078" />
     <property name="java.endorsed.dirs" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/endorsed" />
     <property name="sun.cpu.isalist" value="" />
     <property name="sun.jnu.encoding" value="UTF-8" />
@@ -48,7 +48,7 @@
     <property name="env.GDMSESSION" value="gnome" />
     <property name="env.GDM_KEYBOARD_LAYOUT" value="br" />
     <property name="user.country" value="BR" />
-    <property name="env.GNOME_KEYRING_PID" value="2064" />
+    <property name="env.GNOME_KEYRING_PID" value="2022" />
     <property name="env.OPENJMS_HOME" value="/home/andrew/bin/openjms-0.7.7-beta-1" />
     <property name="java.home" value="/home/andrew/bin/jdk1.6.0_18/jre" />
     <property name="java.vm.info" value="mixed mode" />
@@ -70,7 +70,7 @@
     <property name="user.home" value="/home/andrew" />
     <property name="ant.file.jorigami" value="/home/andrew/desenvolvimento/workspaces/shared/JOrigami/build.xml" />
     <property name="java.specification.vendor" value="Sun Microsystems Inc." />
-    <property name="java.library.path" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/i386/server:/home/andrew/bin/jdk1.6.0_18/jre/lib/i386:/home/andrew/bin/jdk1.6.0_18/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/java/packages/lib/i386:/lib:/usr/lib" />
+    <property name="java.library.path" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/i386/server:/home/andrew/bin/jdk1.6.0_18/jre/lib/i386:/home/andrew/bin/jdk1.6.0_18/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/java/packages/lib/i386:/lib:/usr/lib" />
     <property name="java.vendor.url" value="http://java.sun.com/" />
     <property name="java.vm.vendor" value="Sun Microsystems Inc." />
     <property name="jorigami.folder.build" value="../JOrigami/build/" />
@@ -88,13 +88,13 @@
     <property name="env.ANT_HOME" value="/home/andrew/bin/apache-ant-1.8.0" />
     <property name="java.io.tmpdir" value="/tmp" />
     <property name="eclipse.pdebuild.home" value="/home/andrew/bin/eclipse_galileu_web/plugins/org.eclipse.pde.build_3.5.2.R35x_20100114/.//" />
-    <property name="env.LD_LIBRARY_PATH" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/i386/server:/home/andrew/bin/jdk1.6.0_18/jre/lib/i386:/home/andrew/bin/jdk1.6.0_18/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons" />
+    <property name="env.LD_LIBRARY_PATH" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/i386/server:/home/andrew/bin/jdk1.6.0_18/jre/lib/i386:/home/andrew/bin/jdk1.6.0_18/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk/jre/lib/i386:/usr/lib/xulrunner-addons:/usr/lib/xulrunner-addons" />
     <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
-    <property name="env.SSH_AUTH_SOCK" value="/tmp/keyring-ZloDKY/socket.ssh" />
+    <property name="env.SSH_AUTH_SOCK" value="/tmp/keyring-PEarch/socket.ssh" />
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
     <property name="os.arch" value="i386" />
     <property name="java.ext.dirs" value="/home/andrew/bin/jdk1.6.0_18/jre/lib/ext:/usr/java/packages/lib/ext" />
-    <property name="env.XAUTHORITY" value="/var/run/gdm/auth-for-andrew-YVzbeF/database" />
+    <property name="env.XAUTHORITY" value="/var/run/gdm/auth-for-andrew-YLZsyZ/database" />
     <property name="user.dir" value="/home/andrew/desenvolvimento/workspaces/shared/JOrigami" />
     <property name="env.SPEECHD_PORT" value="7560" />
     <property name="env.GTK_MODULES" value="canberra-gtk-module" />
@@ -108,12 +108,12 @@
     <property name="env.USERNAME" value="andrew" />
     <property name="env.SCALA_HOME" value="/home/andrew/bin/scala-2.7.7.final" />
     <property name="file.encoding" value="UTF-8" />
-    <property name="env.GNOME_KEYRING_SOCKET" value="/tmp/keyring-ZloDKY/socket" />
+    <property name="env.GNOME_KEYRING_SOCKET" value="/tmp/keyring-PEarch/socket" />
     <property name="jorigami.version" value="1.0.0" />
     <property name="java.specification.version" value="1.6" />
     <property name="ant.project.invoked-targets" value="DIST" />
   </properties>
-  <testcase classname="TestingOrigami" name="testCouldCreateOneOrigami" time="0.045" />
+  <testcase classname="TestingOrigami" name="testCouldCreateOneOrigami" time="0.034" />
   <testcase classname="TestingOrigami" name="testStringValue" time="0.0050" />
   <testcase classname="TestingOrigami" name="testIntValue" time="0.0040" />
   <testcase classname="TestingOrigami" name="testCharValue" time="0.0040" />
@@ -122,10 +122,10 @@
   <testcase classname="TestingOrigami" name="testShortValue" time="0.0040" />
   <testcase classname="TestingOrigami" name="testByteValue" time="0.0040" />
   <testcase classname="TestingOrigami" name="testEnumValue" time="0.0030" />
-  <testcase classname="TestingOrigami" name="testDateValue" time="0.0040" />
-  <testcase classname="TestingOrigami" name="testOrigamiFaultTolerantWithFaultListener" time="0.037" />
-  <testcase classname="TestingOrigami" name="testOrigamiFaultTolerantWithIgnore" time="0.028" />
-  <testcase classname="TestingOrigami" name="testOrigamiNotFaultTolerant" time="0.0090" />
+  <testcase classname="TestingOrigami" name="testDateValue" time="0.0030" />
+  <testcase classname="TestingOrigami" name="testOrigamiFaultTolerantWithFaultListener" time="0.036" />
+  <testcase classname="TestingOrigami" name="testOrigamiFaultTolerantWithIgnore" time="0.033" />
+  <testcase classname="TestingOrigami" name="testOrigamiNotFaultTolerant" time="0.0070" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
