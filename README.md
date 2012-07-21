@@ -83,6 +83,7 @@ Each field annoted with @OrigamiField indicates the range of information for eac
 ## OrigamiFactory
 
 Execute the processing of InputStream. use its factory method.
+
 1. createLinesBasedFactory: assumes that a '\n' separates the 'unit of informations'.
 2. createSharpBasedFactory: assumes that a '#' separates the 'unit of informations'.
 3. createCommaBasedFactory: assumes that a ',' separates the 'unit of informations'.
