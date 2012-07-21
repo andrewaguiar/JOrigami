@@ -2,7 +2,7 @@
 
 JOrigami provides a very simple and elegant way to process text files (or any InputStream).
 
-1) Find the file layout, for example with this file below:
+Find the file layout, for example with this file below:
 
 ```text
 		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
@@ -24,7 +24,8 @@ JOrigami provides a very simple and elegant way to process text files (or any In
 
 
 
-2) Create your Origami class, like this:
+Create your Origami class, like this:
+
 ```java
 		public class BasicOrigami {
 		
@@ -82,10 +83,10 @@ Each field annoted with @OrigamiField indicates the range of information for eac
 ## OrigamiFactory
 
 Execute the processing of InputStream. use its factory method.
-  1) createLinesBasedFactory: assumes that a '\n' separates the 'unit of informations'.
-  2) createSharpBasedFactory: assumes that a '#' separates the 'unit of informations'.
-  3) createCommaBasedFactory: assumes that a ',' separates the 'unit of informations'.
-  4) Contructor (OrigamiFactory) for customized separators use the default constructor.
+1. createLinesBasedFactory: assumes that a '\n' separates the 'unit of informations'.
+2. createSharpBasedFactory: assumes that a '#' separates the 'unit of informations'.
+3. createCommaBasedFactory: assumes that a ',' separates the 'unit of informations'.
+4. Contructor (OrigamiFactory) for customized separators use the default constructor.
 
 ## ConsolidatingListener
 During the processing each 'unit of informations' that is cosolidated in a Origami object will pass by a 'ConsolidatingListener'.
