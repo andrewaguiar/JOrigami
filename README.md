@@ -1,28 +1,26 @@
-## JOrigami
+# JOrigami
 
 JOrigami provides a very simple and elegant way to process text files (or any InputStream).
 
 Find the file layout, for example with this file below:
 
 ```text
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
-		teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
+teste com o componente origami  1123M0109201114591.723.569991COMPLEX
 ```
-
-
 
 Create your Origami class, like this:
 
@@ -78,9 +76,9 @@ Each field annoted with @OrigamiField indicates the range of information for eac
 		origami.mount(new FileInputStream("tests/many_lines.txt"));
 ```
 
-# Some classes
+## Some classes
 
-## OrigamiFactory
+#### OrigamiFactory
 
 Execute the processing of InputStream. use its factory method.
 
@@ -89,14 +87,14 @@ Execute the processing of InputStream. use its factory method.
 3. createCommaBasedFactory: assumes that a ',' separates the 'unit of informations'.
 4. Contructor (OrigamiFactory) for customized separators use the default constructor.
 
-## ConsolidatingListener
+#### ConsolidatingListener
 During the processing each 'unit of informations' that is cosolidated in a Origami object will pass by a 'ConsolidatingListener'.
 
-## OrigamiField
+#### OrigamiField
 Annotation used to mark a field to be filled with informations.
 
-## FaultListener
+#### FaultListener
 During the processing each 'unit of informations' that generates a Exception in the conversion will pass by a 'FaultListener'.
 
-## OrigamiFormatter
+#### OrigamiFormatter
 Used to convert from String (text file) to basic java types, can be inherited to provide more complex forms of conversion.
