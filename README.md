@@ -1,5 +1,7 @@
 # JOrigami
 
+## Usage
+
 JOrigami provides a very simple and elegant way to process text files (or any InputStream).
 
 Find the file layout, for example with this file below:
